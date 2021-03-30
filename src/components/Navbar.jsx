@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Router, BrowserRouter} from 'react-router-dom';
 
 export default function Navbar(){
     return(
@@ -106,7 +107,7 @@ export default function Navbar(){
 <div class="container menu-bar d-flex align-items-center">
 <ul class="list-unstyled form-inline mb-0">
 <li class="nav-item active">
-<a class="nav-link text-white pl-0" href="home.html">Home <span class="sr-only">(current)</span></a>
+<a class="nav-link text-white pl-0" href="/home">Home <span class="sr-only">(current)</span></a>
 </li>
 <li class="nav-item dropdown">
 <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -132,11 +133,11 @@ Checkout Process
 </div>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a class="nav-link text-white dropdown-toggle" href="/myorder" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 My Order
 </a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<a class="dropdown-item" href="my_order.html">My order</a>
+<a class="dropdown-item" href="/myorder">My order</a>
 <a class="dropdown-item" href="status_complete.html">Status Complete</a>
 <a class="dropdown-item" href="status_onprocess.html">Status on Process</a>
 <a class="dropdown-item" href="status_canceled.html">Status Canceled</a>
