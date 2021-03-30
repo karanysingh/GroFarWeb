@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
-import Default from './Default'
+import Default from './Default';
+import Footer from './Footer';
 
 export default class Home extends React.Component {
     render(){
@@ -8,6 +9,7 @@ export default class Home extends React.Component {
         <div>
             <Navbar></Navbar>
             <Default></Default>
+            <Footer></Footer>
          </div>
 )
     }
