@@ -19,15 +19,16 @@ export default class Home extends React.Component {
         <div>
             <Navbar></Navbar>
             <BrowserRouter>
-                <Switch>
-                    <Route path="/myorder" exact component={Myorder}></Route>
-                    <Route path="/myaccount" exact component={Myaccount}></Route>
-                    <Route path="/recommended" exact component={Recommended}></Route>
-                    <Route path="/trending" exact component={Trending}></Route>
-                    <Route path="/popular" exact component={Popular}></Route>
-                    <Route path="/home" exact component={Default}></Route>
-                    <Route path="/" exact component={Default}></Route>
-                </Switch>
+                {/* <Switch> */}
+                    <Route exact path="/myorder" component={Myorder}></Route>
+                    <Route exact path="/myaccount" component={Myaccount}></Route>
+                    <Route exact path="/myaccount/:type" component={Myaccount}></Route>
+                    <Route exact path="/recommended" component={Recommended}></Route>
+                    {/* {/* <Route path="/trending" component={Trending}></Route> */}
+                    <Route exact path="/popular" component={Popular}></Route>
+                    <Route exact path="/home" component={Default}></Route>
+                    <Route exact path="/" component={Default}></Route>         
+                {/* </Switch> */}
             </BrowserRouter>
             <Footer></Footer>
          </div>
