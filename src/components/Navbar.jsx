@@ -6,7 +6,7 @@ export default function Navbar(){
         <div>
 <div class="bg-white shadow-sm osahan-main-nav">
 <nav class="navbar navbar-expand-lg navbar-light bg-white osahan-header py-0 container">
-<a class="navbar-brand mr-0" href="home.html"><img class="img-fluid logo-img rounded-pill border shadow-sm" src="img/logo.svg"></img></a>
+<a class="navbar-brand mr-0" href="/home"><img class="img-fluid logo-img rounded-pill border shadow-sm" src="img/logo.svg"></img></a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -52,13 +52,41 @@ export default function Navbar(){
 <a href="#" data-toggle="modal" data-target="#login" class="mr-2 text-dark bg-light rounded-pill p-2 icofont-size border shadow-sm">
 <i class="icofont-login"></i>
 </a>
-
+<div class="dropdown mr-3">
+            <a
+              href="#"
+              class="dropdown-toggle text-dark"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                src="img/user.png"
+                class="img-fluid rounded-circle header-user mr-2"
+              />
+              Hi Osahan
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right top-profile-drop"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <a class="dropdown-item" href="/myaccount">My account</a>
+              <a class="dropdown-item" href="/promos">Promos</a>
+              <a class="dropdown-item" href="/myaddress">My address</a>
+              <a class="dropdown-item" href="/help_support"
+                >Help & support</a
+              >
+              <a class="dropdown-item" href="/signin">Logout</a>
+            </div>
+          </div>
 <div class="dropdown">
 <a href="#" class="text-dark dropdown-toggle not-drop" id="dropdownMenuNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <i class="icofont-notification d-flex align-items-center bg-light rounded-pill p-2 icofont-size border shadow-sm">
 
 </i>
 </a>
+
 <div class="dropdown-menu dropdown-menu-right p-0 osahan-notifications-main" aria-labelledby="dropdownMenuNotification">
 
 <div class="osahan-notifications bg-white border-bottom p-2">
@@ -97,7 +125,7 @@ export default function Navbar(){
 </div>
 </div>
 
-<a href="cart.html" class="ml-2 text-dark bg-light rounded-pill p-2 icofont-size border shadow-sm">
+<a href="/cart" class="ml-2 text-dark bg-light rounded-pill p-2 icofont-size border shadow-sm">
 <i class="icofont-shopping-cart"></i>
 </a>
 </div>
@@ -114,8 +142,7 @@ export default function Navbar(){
 Products
 </a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<a class="dropdown-item" href="listing.html">Listing</a>
-<a class="dropdown-item" href="product_details.html">Detail</a>
+<a class="dropdown-item" href="/product_details">Detail</a>
 <div class="dropdown-divider"></div>
 <a class="dropdown-item" href="/trending">Trending</a>
 <a class="dropdown-item" href="/recommended">Recommended</a>
@@ -127,9 +154,9 @@ Products
 Checkout Process
 </a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<a class="dropdown-item" href="cart.html">Cart</a>
-<a class="dropdown-item" href="checkout.html">Checkout</a>
-<a class="dropdown-item" href="successful.html">Successful</a>
+<a class="dropdown-item" href="/cart">Cart</a>
+<a class="dropdown-item" href="/checkout">Checkout</a>
+<a class="dropdown-item" href="/successful">Successful</a>
 </div>
 </li>
 <li class="nav-item dropdown">
@@ -141,33 +168,13 @@ My Order
 <a class="dropdown-item" href="status_complete.html">Status Complete</a>
 <a class="dropdown-item" href="status_onprocess.html">Status on Process</a>
 <a class="dropdown-item" href="status_canceled.html">Status Canceled</a>
-<a class="dropdown-item" href="review.html">Review</a>
+<a class="dropdown-item" href="/review">Review</a>
 </div>
 </li>
-{/* <li class="nav-item dropdown">
-<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Extra Pages
-</a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<a class="dropdown-item" href="verification.html">Verification</a>
-<a class="dropdown-item" href="promos.html">Promos</a>
-<a class="dropdown-item" href="promo_details.html">Promo Details</a>
-<a class="dropdown-item" href="terms_conditions.html">Terms & Conditions</a>
-<a class="dropdown-item" href="privacy.html">Privacy</a>
-<a class="dropdown-item" href="terms%26conditions.html">Conditions</a>
-<a class="dropdown-item" href="help_support.html">Help Support</a>
-<a class="dropdown-item" href="help_ticket.html">Help Ticket</a>
-<a class="dropdown-item" href="refund_payment.html">Refund Payment</a>
-<a class="dropdown-item" href="faq.html">FAQ</a>
-<a class="dropdown-item" href="signin.html">Sign In</a>
-<a class="dropdown-item" href="signup.html">Sign Up</a>
-<a class="dropdown-item" href="search.html">Search</a>
-</div>
-</li> */}
 </ul>
 <div class="list-unstyled form-inline mb-0 ml-auto">
-<a href="picks_today.html" class="text-white px-3 py-2">Trending</a>
-<a href="promos.html" class="text-white bg-offer px-3 py-2"><i class="icofont-sale-discount h6"></i>Promos</a>
+<a href="/trending" class="text-white px-3 py-2">Trending</a>
+<a href="/promos" class="text-white bg-offer px-3 py-2"><i class="icofont-sale-discount h6"></i>Promos</a>
 </div>
 </div>
 </div>

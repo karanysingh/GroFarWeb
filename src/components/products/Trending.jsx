@@ -53,19 +53,46 @@ export default function Trending(){
       ];
      
 return(
+<div>
+    <nav aria-label="breadcrumb" class="breadcrumb mb-0">
+      <div class="container">
+        <ol class="d-flex align-items-center mb-0 p-0">
+          <li class="breadcrumb-item">
+            <a href="#" class="text-success">
+              Home
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Trending
+          </li>
+        </ol>
+      </div>
+    </nav>
     <div className="container">
     <div class="row">
     <div class="col-lg-12">
       <div class="osahan-home-page">
         <div class="osahan-body">
     <div class="title d-flex align-items-center py-3">
-                      <h5 class="m-0">Pick's Today</h5>
+                      <h5 class="m-0">Trending</h5>
+                      <div class="m-0 text-center ml-auto">
                       <a
-                        class="ml-auto btn btn-outline-success btn-sm"
-                        href="picks_today.html"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        class="btn text-muted bg-white mr-2"
                       >
-                        See more
+                        <i class="icofont-filter mr-1"></i> Filter
                       </a>
+                      <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        class="btn text-muted bg-white"
+                      >
+                        <i class="icofont-signal mr-1"></i> Sort
+                      </a>
+                    </div>
                     </div>
                     <div class="pick_today">
                       <div class="row">
@@ -146,6 +173,6 @@ return(
                         
                       </div>
                     </div>
-                    </div></div></div></div></div>
+                    </div></div></div></div></div></div>
     );
 };
