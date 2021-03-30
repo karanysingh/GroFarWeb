@@ -8,7 +8,7 @@ import Recommended from './products/Recommended';
 import Popular from './products/Popular';
 import Trending from './products/Trending';
 import Promos from './myaccount/Promos';
-import myaccount from './myaccount/Myaccount';
+import Myaccount from './myaccount/Myaccount';
 
 
 export default class Home extends React.Component {
@@ -21,11 +21,10 @@ export default class Home extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route path="/myorder" exact component={Myorder}></Route>
-                    <Route path="/myaccount" exact component={myaccount}></Route>
+                    <Route path="/myaccount" exact component={Myaccount}></Route>
                     <Route path="/recommended" exact component={Recommended}></Route>
                     <Route path="/trending" exact component={Trending}></Route>
                     <Route path="/popular" exact component={Popular}></Route>
-                    <Route path="/promos" exact component={Promos}></Route>
                     <Route path="/home" exact component={Default}></Route>
                     <Route path="/" exact component={Default}></Route>
                 </Switch>

@@ -2,6 +2,10 @@ import React from 'react';
 import DefaultMyaccount from './DefaultMyaccount';
 import Promos from './Promos';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import Address from './Address';
+import Terms from './Terms';
+import Help from './Help';
+import Logout from './Logout';
 
 export default function myaccount(){
     return(
@@ -24,37 +28,37 @@ export default function myaccount(){
 <span class="badge badge-success p-1 badge-pill ml-auto"><i class="icofont-simple-right"></i></span>
 </li>
 </a>
-<a href="/promos" class="text-decoration-none text-dark">
+<a href="/myaccount/promos" class="text-decoration-none text-dark">
 <li class="border-bottom bg-white d-flex align-items-center p-3">
 <i class="icofont-sale-discount osahan-icofont bg-success"></i>Promos
 <span class="badge badge-success p-1 badge-pill ml-auto"><i class="icofont-simple-right"></i></span>
 </li>
 </a>
-<a href="my_address.html" class="text-decoration-none text-dark">
+<a href="/myaddress" class="text-decoration-none text-dark">
 <li class="border-bottom bg-white d-flex align-items-center p-3">
 <i class="icofont-address-book osahan-icofont bg-dark"></i>My Address
 <span class="badge badge-success p-1 badge-pill ml-auto"><i class="icofont-simple-right"></i></span>
 </li>
 </a>
-<a href="terms_conditions.html" class="text-decoration-none text-dark">
+<a href="/terms" class="text-decoration-none text-dark">
 <li class="border-bottom bg-white d-flex align-items-center p-3">
 <i class="icofont-info-circle osahan-icofont bg-primary"></i>Terms, Privacy & Policy
 <span class="badge badge-success p-1 badge-pill ml-auto"><i class="icofont-simple-right"></i></span>
 </li>
 </a>
-<a href="help_support.html" class="text-decoration-none text-dark">
+<a href="/help" class="text-decoration-none text-dark">
 <li class="border-bottom bg-white d-flex align-items-center p-3">
 <i class="icofont-phone osahan-icofont bg-warning"></i>Help & Support
 <span class="badge badge-success p-1 badge-pill ml-auto"><i class="icofont-simple-right"></i></span>
 </li>
 </a>
-<a href="help_ticket.html" class="text-decoration-none text-dark">
+<a href="/ticket" class="text-decoration-none text-dark">
 <li class="border-bottom bg-white d-flex align-items-center p-3">
 <i class="icofont-phone osahan-icofont bg-success"></i>Ticket
 <span class="badge badge-success p-1 badge-pill ml-auto"><i class="icofont-simple-right"></i></span>
 </li>
 </a>
-<a href="signin.html" class="text-decoration-none text-dark">
+<a href="/logout" class="text-decoration-none text-dark">
 <li class="border-bottom bg-white d-flex  align-items-center p-3">
 <i class="icofont-lock osahan-icofont bg-danger"></i> Logout
 </li>
@@ -67,7 +71,11 @@ export default function myaccount(){
 <BrowserRouter>
                 <Switch>
                     <Route path="/myaccount" exact component={DefaultMyaccount}></Route>
-                    <Route path="/promos" exact component={Promos}></Route>
+                    <Route path="/myaccount/promos" exact component={Promos}></Route>
+                    <Route path="/myaddress" exact component={Address}></Route>
+                    <Route path="/terms" exact component={Terms}></Route>
+                    <Route path="/help" exact component={Help}></Route>
+                    <Route path="/logout" exact component={Logout}></Route>
                 </Switch>
             </BrowserRouter>
 </div>
