@@ -117,9 +117,9 @@ Products
 <a class="dropdown-item" href="listing.html">Listing</a>
 <a class="dropdown-item" href="product_details.html">Detail</a>
 <div class="dropdown-divider"></div>
-<a class="dropdown-item" href="picks_today.html">Trending</a>
-<a class="dropdown-item" href="recommend.html">Recommended</a>
-<a class="dropdown-item" href="fresh_vegan.html">Most Popular</a>
+<a class="dropdown-item" href="/trending">Trending</a>
+<a class="dropdown-item" href="/recommended">Recommended</a>
+<a class="dropdown-item" href="/popular">Most Popular</a>
 </div>
 </li>
 <li class="nav-item dropdown">
@@ -144,7 +144,7 @@ My Order
 <a class="dropdown-item" href="review.html">Review</a>
 </div>
 </li>
-<li class="nav-item dropdown">
+{/* <li class="nav-item dropdown">
 <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Extra Pages
 </a>
@@ -163,7 +163,7 @@ Extra Pages
 <a class="dropdown-item" href="signup.html">Sign Up</a>
 <a class="dropdown-item" href="search.html">Search</a>
 </div>
-</li>
+</li> */}
 </ul>
 <div class="list-unstyled form-inline mb-0 ml-auto">
 <a href="picks_today.html" class="text-white px-3 py-2">Trending</a>
