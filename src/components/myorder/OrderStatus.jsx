@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function OrderStatus(){
     return(
+        
+<div class="col-md-9">
 <section class="bg-white osahan-main-body rounded shadow-sm overflow-hidden">
 <div class="container-0">
 <div class="row">
@@ -60,5 +62,6 @@ export default function OrderStatus(){
 </div>
 </div>
 </section>
+</div>
     );
 }

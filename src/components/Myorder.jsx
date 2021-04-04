@@ -1,6 +1,5 @@
 import React from "react";
-import { Switch } from "react-router";
-import { Route, BrowserRouter, Link } from "react-router-dom";
+import { Route, BrowserRouter, Link,Switch  } from "react-router-dom";
 import DefaultMyOrder from './myorder/DefaultMyOrder';
 import OrderStatus from './myorder/OrderStatus';
 
@@ -97,8 +96,9 @@ export default function Myorder() {
             </ul>
           </div>
           <Switch>
-              <Route exact path="/" component={DefaultMyOrder}></Route>
-          </Switch>
+              <Route exact path="/myorder" component={()=><DefaultMyOrder orders={orders}></DefaultMyOrder>}></Route>
+              <Route exact path="/myorder/status" component={()=><OrderStatus orders={orders}></OrderStatus>}></Route>
+         </Switch>
         </div>
       </div>
     </section>

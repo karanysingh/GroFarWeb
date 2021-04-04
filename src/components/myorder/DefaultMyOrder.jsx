@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Route, BrowserRouter, Link } from "react-router-dom";
 export default function DefaultMyOrder(props){
     return(
         <div class="tab-content col-md-9" id="myTabContent">
@@ -8,12 +9,12 @@ export default function DefaultMyOrder(props){
               id="completed"
               role="tabpanel"
               aria-labelledby="completed-tab"
-            >>
+            >
               <div class="order-body">
                 {props.orders.map((order) => (
                   <div class="pb-3">
-                    <a
-                      href="status_complete.html"
+                    <Link
+                      to="/myorder/status"
                       class="text-decoration-none text-dark"
                     >
                       <div class="p-3 rounded shadow-sm bg-white">
@@ -62,7 +63,7 @@ export default function DefaultMyOrder(props){
                           </p>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 ))}
               </div>

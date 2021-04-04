@@ -82,8 +82,6 @@ export default function myaccount(props) {
               </div>
             </div>
           </div>
-          {/* <BrowserRouter>
-          <Switch> */}
           <Switch>
             <Route path="/myaccount" exact component={DefaultMyaccount}></Route>
             <Route path="/myaccount/promos"  exact component={Promos}></Route>
@@ -91,12 +89,7 @@ export default function myaccount(props) {
             <Route path="/myaccount/help"  exact component={Help}></Route>
             <Route path="/myaccount/myaddress"  exact component={Address}></Route>
             </Switch>
-            {/* <Route exact path="${path}/myaddress" component={Address}></Route>
-            <Route path="/terms" exact component={Terms}></Route>
-            <Route path="/help" exact component={Help}></Route>
-            <Route path="/logout" exact component={Logout}></Route> */}
-          {/* </Switch>
-          </BrowserRouter> */}
+      
         </div>
       </div>
     </section>

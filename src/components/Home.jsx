@@ -21,10 +21,10 @@ export default class Home extends React.Component {
             <BrowserRouter>
                 {/* <Switch> */}
                     <Route exact path="/myorder" component={Myorder}></Route>
+                    <Route exact path="/myorder/:type" component={Myorder}></Route>
                     <Route exact path="/myaccount" component={Myaccount}></Route>
                     <Route exact path="/myaccount/:type" component={Myaccount}></Route>
                     <Route exact path="/recommended" component={Recommended}></Route>
-                    {/* {/* <Route path="/trending" component={Trending}></Route> */}
                     <Route exact path="/popular" component={Popular}></Route>
                     <Route exact path="/home" component={Default}></Route>
                     <Route exact path="/" component={Default}></Route>         
