@@ -9,6 +9,7 @@ import Popular from './products/Popular';
 import Trending from './products/Trending';
 import Promos from './myaccount/Promos';
 import Myaccount from './myaccount/Myaccount';
+import AdminPanel from './myaccount/AdminPanel';
 
 
 export default class Home extends React.Component {
@@ -17,10 +18,11 @@ export default class Home extends React.Component {
     render(){
     return(
         <div>
+        <BrowserRouter>
             <Navbar></Navbar>
-            <BrowserRouter>
                 {/* <Switch> */}
                     <Route exact path="/myorder" component={Myorder}></Route>
+                    <Route exact path="/admin" component={AdminPanel}></Route>
                     <Route exact path="/myorder/:type" component={Myorder}></Route>
                     <Route exact path="/myaccount" component={Myaccount}></Route>
                     <Route exact path="/myaccount/:type" component={Myaccount}></Route>
@@ -29,8 +31,8 @@ export default class Home extends React.Component {
                     <Route exact path="/home" component={Default}></Route>
                     <Route exact path="/" component={Default}></Route>         
                 {/* </Switch> */}
-            </BrowserRouter>
             <Footer></Footer>
+            </BrowserRouter>
          </div>
 )
     }

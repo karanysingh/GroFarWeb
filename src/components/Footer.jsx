@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Route, BrowserRouter, Link,Switch,Router  } from "react-router-dom";
 export default function Footer() {
     return(
   <footer class="section-footer border-top bg-white">
@@ -38,18 +39,18 @@ export default function Footer() {
             </form>
           </div>
           <div class="col-md-4 text-md-right">
-            <a href="#" class="btn btn-icon btn-light">
+            <Link to="#" class="btn btn-icon btn-light">
               <i class="icofont-facebook"></i>
-            </a>
-            <a href="#" class="btn btn-icon btn-light">
+            </Link>
+            <Link to="#" class="btn btn-icon btn-light">
               <i class="icofont-twitter"></i>
-            </a>
-            <a href="#" class="btn btn-icon btn-light">
+            </Link>
+            <Link to="#" class="btn btn-icon btn-light">
               <i class="icofont-instagram"></i>
-            </a>
-            <a href="#" class="btn btn-icon btn-light">
+            </Link>
+            <Link to="#" class="btn btn-icon btn-light">
               <i class="icofont-youtube"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -62,29 +63,29 @@ export default function Footer() {
             <h6 class="title">Products</h6>
             <ul class="list-unstyled list-padding">
               <li>
-                <a href="listing.html" class="text-dark">
+                <Link to="/listing" class="text-dark">
                   Listing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="product_details.html" class="text-dark">
+                <Link to="/details" class="text-dark">
                   Detail
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="picks_today.html" class="text-dark">
+                <Link to="/trending" class="text-dark">
                   Trending
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="recommend.html" class="text-dark">
+                <Link to="/recommended" class="text-dark">
                   Recommended
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="fresh_vegan.html" class="text-dark">
+                <Link to="/popular" class="text-dark">
                   Most Popular
-                </a>
+                </Link>
               </li>
             </ul>
           </aside>
@@ -92,34 +93,34 @@ export default function Footer() {
             <h6 class="title">Checkout Process</h6>
             <ul class="list-unstyled list-padding">
               <li>
-                <a href="cart.html" class="text-dark">
+                <Link to="/cart" class="text-dark">
                   Cart
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="cart.html" class="text-dark">
+                <Link to="/cart" class="text-dark">
                   Order Address
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="cart.html" class="text-dark">
+                <Link to="/cart" class="text-dark">
                   Delivery Time
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="cart.html" class="text-dark">
+                <Link to="/cart" class="text-dark">
                   Order Payment
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="checkout.html" class="text-dark">
+                <Link to="/checkout" class="text-dark">
                   Checkout
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="successful.html" class="text-dark">
+                <Link to="/successful" class="text-dark">
                   Successful
-                </a>
+                </Link>
               </li>
             </ul>
           </aside>
@@ -127,29 +128,29 @@ export default function Footer() {
             <h6 class="title">My Order</h6>
             <ul class="list-unstyled list-padding">
               <li>
-                <a href="my_order.html" class="text-dark">
+                <Link to="my_order" class="text-dark">
                   My order
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="status_complete.html" class="text-dark">
+                <Link to="status_complete" class="text-dark">
                   Status Complete
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="status_onprocess.html" class="text-dark">
+                <Link to="status_onprocess" class="text-dark">
                   Status on Process
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="status_canceled.html" class="text-dark">
+                <Link to="status_canceled" class="text-dark">
                   Status Canceled
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="review.html" class="text-dark">
+                <Link to="review" class="text-dark">
                   Review
-                </a>
+                </Link>
               </li>
             </ul>
           </aside>
@@ -157,44 +158,44 @@ export default function Footer() {
             <h6 class="title">My Account</h6>
             <ul class="list-unstyled list-padding">
               <li>
-                <a class="text-dark" href="my_account.html">
+                <Link class="text-dark" href="my_account">
                   {" "}
                   My account
-                </a>
+                </Link>
               </li>
               <li>
-                <a class="text-dark" href="promos.html">
+                <Link class="text-dark" href="promos">
                   {" "}
                   Promos
-                </a>
+                </Link>
               </li>
               <li>
-                <a class="text-dark" href="my_address.html">
+                <Link class="text-dark" href="my_address">
                   {" "}
                   My address
-                </a>
+                </Link>
               </li>
               <li>
-                <a class="text-dark" href="terms_conditions.html">
+                <Link class="text-dark" href="terms_conditions">
                   Terms &amp; conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a class="text-dark" href="help_support.html">
+                <Link class="text-dark" href="help_support">
                   Help &amp; support
-                </a>
+                </Link>
               </li>
               <li>
-                <a class="text-dark" href="help_ticket.html">
+                <Link class="text-dark" href="help_ticket">
                   {" "}
                   Help ticket
-                </a>
+                </Link>
               </li>
               <li>
-                <a class="text-dark" href="signin.html">
+                <Link class="text-dark" href="signin">
                   {" "}
                   Logout
-                </a>
+                </Link>
               </li>
             </ul>
           </aside>
@@ -202,36 +203,36 @@ export default function Footer() {
             <h6 class="title">Extra Pages</h6>
             <ul class="list-unstyled list-padding">
               <li>
-                <a href="promo_details.html" class="text-dark">
+                <Link to="promo_details" class="text-dark">
                   Promo Details
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="terms_conditions.html" class="text-dark">
+                <Link to="terms_conditions" class="text-dark">
                   Conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="help_support.html" class="text-dark">
+                <Link to="help_support" class="text-dark">
                   Help Support
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="refund_payment.html" class="text-dark">
+                <Link to="refund_payment" class="text-dark">
                   Refund Payment
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="faq.html" class="text-dark">
+                <Link to="faq" class="text-dark">
                   {" "}
                   FAQ{" "}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="signin.html" class="text-dark">
+                <Link to="signin" class="text-dark">
                   {" "}
                   Sign In{" "}
-                </a>
+                </Link>
               </li>
             </ul>
           </aside>
@@ -245,23 +246,23 @@ export default function Footer() {
           <div class="col-md-6">
             <span class="pr-2">© 2020 Grofarweb</span>
             <span class="pr-2">
-              <a href="privacy.html" class="text-dark">
+              <Link to="/privacy" class="text-dark">
                 Privacy
-              </a>
+              </Link>
             </span>
             <span class="pr-2">
-              <a href="terms%26conditions.html" class="text-dark">
+              <Link to="/terms%26conditions" class="text-dark">
                 Terms & Conditions
-              </a>
+              </Link>
             </span>
           </div>
           <div class="col-md-6 text-md-right">
-            <a href="#">
+            <Link to="#">
               <img src="img/appstore.png" height="30" ></img>
-            </a>
-            <a href="#">
+            </Link>
+            <Link to="#">
               <img src="img/playmarket.png" height="30" ></img>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -279,7 +280,7 @@ export default function Footer() {
           <div class="modal-header p-0">
             <nav class="schedule w-100">
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a
+                <Link
                   class="nav-link active col-5 py-4"
                   id="nav-home-tab"
                   data-toggle="tab"
@@ -289,8 +290,8 @@ export default function Footer() {
                   aria-selected="true"
                 >
                   <p class="mb-0 font-weight-bold">Sign in</p>
-                </a>
-                <a
+                </Link>
+                <Link
                   class="nav-link col-5 py-4"
                   id="nav-profile-tab"
                   data-toggle="tab"
@@ -300,8 +301,8 @@ export default function Footer() {
                   aria-selected="false"
                 >
                   <p class="mb-0 font-weight-bold">Sign up</p>
-                </a>
-                <a
+                </Link>
+                <Link
                   class="nav-link col-2 p-0 d-flex align-items-center justify-content-center"
                   data-dismiss="modal"
                   aria-label="Close"
@@ -309,7 +310,7 @@ export default function Footer() {
                   <h1 class="m-0 h4 text-dark">
                     <i class="icofont-close-line"></i>
                   </h1>
-                </a>
+                </Link>
               </div>
             </nav>
           </div>
@@ -353,24 +354,24 @@ export default function Footer() {
                       </button>
                     </form>
                     <p class="text-muted text-center small m-0 py-3">or</p>
-                    <a
-                      href="verification.html"
+                    <Link
+                      href="verification"
                       class="btn btn-dark btn-block rounded btn-lg btn-apple"
                     >
                       <i class="icofont-brand-apple mr-2"></i> Sign up with
                       Apple
-                    </a>
-                    <a
-                      href="verification.html"
+                    </Link>
+                    <Link
+                      href="verification"
                       class="btn btn-light border btn-block rounded btn-lg btn-google"
                     >
                       <i class="icofont-google-plus text-danger mr-2"></i>
                       Sign up with Google
-                    </a>
+                    </Link>
                     <p class="text-center mt-3 mb-0">
-                      <a href="signup.html" class="text-dark">
+                      <Link to="signup" class="text-dark">
                         Don't have an account? Sign up
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -446,24 +447,24 @@ export default function Footer() {
                       </button>
                     </form>
                     <p class="text-muted text-center small py-2 m-0">or</p>
-                    <a
-                      href="verification.html"
+                    <Link
+                      href="verification"
                       class="btn btn-dark btn-block rounded btn-lg btn-apple"
                     >
                       <i class="icofont-brand-apple mr-2"></i> Sign up with
                       Apple
-                    </a>
-                    <a
-                      href="verification.html"
+                    </Link>
+                    <Link
+                      href="verification"
                       class="btn btn-light border btn-block rounded btn-lg btn-google"
                     >
                       <i class="icofont-google-plus text-danger mr-2"></i>
                       Sign up with Google
-                    </a>
+                    </Link>
                     <p class="text-center mt-3 mb-0">
-                      <a href="signin.html" class="text-dark">
+                      <Link to="signin" class="text-dark">
                         Already have an account! Sign in
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -472,21 +473,21 @@ export default function Footer() {
           </div>
           <div class="modal-footer p-0 border-0">
             <div class="col-6 m-0 p-0">
-              <a
+              <Link
                 href="#"
                 class="btn border-top border-right btn-lg btn-block"
                 data-dismiss="modal"
               >
                 Close
-              </a>
+              </Link>
             </div>
             <div class="col-6 m-0 p-0">
-              <a
-                href="help_support.html"
+              <Link
+                href="help_support"
                 class="btn border-top btn-lg btn-block"
               >
                 Help
-              </a>
+              </Link>
             </div>
           </div>
         </div>
