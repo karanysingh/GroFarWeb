@@ -7,7 +7,7 @@ import {
   Button,
   Col,
 } from "react-bootstrap";
-const formSerialize = formElement => {
+const formSerialize = (formElement) => {
   const values = {};
   const inputs = formElement.elements;
 
@@ -15,25 +15,28 @@ const formSerialize = formElement => {
     values[inputs[i].name] = inputs[i].value;
   }
   return values;
-}
+};
 const axios = require("axios");
 export default function AdminPanel() {
-  var tempData ={
-    "id": 5,
-    "typeid": 2,
-    "unit": "kg",
-    "weight": 1,
-    "available": true,
-    "icon": " ",
-    "machine": 1,
-    "name": "Ginger",
-    "price": 19
-};
+  var tempData = {
+    id: 5,
+    typeid: 2,
+    unit: "kg",
+    weight: 1,
+    available: true,
+    icon: " ",
+    machine: 1,
+    name: "Ginger",
+    price: 19,
+  };
   const products = [];
   const [ItemOnDropdown, setItemOnDropdown] = useState("Select Product");
+  const [ItemOnDropdownDelete, setItemOnDropdownDelete] = useState(
+    "Select Product"
+  );
   const [Products, setProducts] = useState(products);
   // const [Temp,setTemp] = useState(tempData);
-  const [formData,setformData] = useState(tempData);
+  const [formData, setformData] = useState(tempData);
   useEffect(() => {
     axios
       .get(
@@ -52,60 +55,48 @@ export default function AdminPanel() {
   }, []);
   const [validated, setValidated] = useState(false);
   //post request to the database
-  const modifyData = () =>{
-    var tempIndex;
-    for(var i=0;i<Products.length;i++){
-      if(Products[i] === ItemOnDropdown){
-        tempIndex = i;
-      }
-    }
-    tempData = {
-      "id": tempIndex+1,
-      "typeid": 2,
-      "unit": "kg",
-      "weight": 1,
-      "available": true,
-      "icon": " ",
-      "machine": 1,
-      "name": "Ginger",
-      "price": 19
-    }
-  }
-  const createItem =(event)=> {
-    
-    event.preventDefault();
+  const createItem = (event) => {
     const form = event.currentTarget;
-    console.log(form)
     var tmp = {
-      "id": Products.length+1,
-      "typeid": 2,
-      "available": true,
-      "icon": " ",
-      "machine": 1,
-    }
-    var Schema = JSON.stringify(tmp)
-    var newData = JSON.stringify(formSerialize(form))
-    var finalMerged = {...tmp,...formSerialize(form)}
-    console.log(
-      finalMerged
-    )
+      id: Products.length + 1,
+      typeid: 2,
+      available: true,
+      icon: " ",
+      machine: 1,
+    };
+    var Schema = JSON.stringify(tmp);
+    var newData = JSON.stringify(formSerialize(form));
+    var finalMerged = { ...tmp, ...formSerialize(form) };
+    console.log(finalMerged);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
-    console.log('called');
+    console.log("called");
     setformData(formSerialize(form));
 
-
-    axios.post('https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/create', finalMerged)
-    .then((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });
-
-  }
+    axios
+      .post(
+        "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/create",
+        finalMerged
+      )
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+  
+  const handleDelete = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }}
   const handleUpdate = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -114,7 +105,23 @@ export default function AdminPanel() {
     }
 
     setValidated(true);
-    modifyData();
+    var tempIndex;
+    for (var i = 0; i < Products.length; i++) {
+      if (Products[i] === ItemOnDropdown) {
+        tempIndex = i;
+      }
+    }
+    tempData = {
+      id: tempIndex + 1,
+      typeid: 2,
+      unit: "kg",
+      weight: 1,
+      available: true,
+      icon: " ",
+      machine: 1,
+      name: "Ginger",
+      price: 19,
+    };
   };
   return (
     <div>
@@ -129,7 +136,7 @@ export default function AdminPanel() {
         </thead>
         <tbody>
           {Products.map((product) => (
-            <tr  key={product.id}>
+            <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
@@ -143,15 +150,18 @@ export default function AdminPanel() {
 
       <Form>
         <Form.Row>
-          <Col><b>Modify Prices and Quantity</b></Col>
+          <Col>
+            <b>Modify Prices and Quantity</b>
+          </Col>
           <Col>
             <DropdownButton id="dropdown-item-button" title={ItemOnDropdown}>
               <Dropdown.ItemText>Select Product</Dropdown.ItemText>
               {Products.map((product) => (
                 <Dropdown.Item
-                key={product.id}
-                  onClick={() => {
-                    setItemOnDropdown(product.name);
+                  key={product.id}
+                  onClick={(e)=>{
+                    setItemOnDropdown(product.name)
+                    e.preventDefault()
                   }}
                   as="button"
                 >
@@ -162,9 +172,21 @@ export default function AdminPanel() {
           </Col>
           <Col>
             <Form.Control
-              required
               type="number"
-              placeholder="Enter new value"
+              placeholder="Enter New Price"
+            />
+          </Col>
+          <Col>
+            <Form.Control
+              type="number"
+              placeholder="Enter New Quantity"
+            />
+          </Col>
+          
+          <Col>
+            <Form.Control
+              type="number"
+              placeholder="Enter New Unit"
             />
           </Col>
           <Col>
@@ -176,21 +198,31 @@ export default function AdminPanel() {
             >
               Update
             </Button>
+            <Button
+              variant="primary"
+              onClick={() => handleDelete}
+              type="submit"
+            >
+              Delete
+            </Button>
           </Col>
         </Form.Row>
       </Form>
       <br></br>
-      <Form 
-              onSubmit={createItem}>
+      <Form onSubmit={createItem}>
         <Form.Row>
-          <Col><b>Add New Product</b></Col><Col>
+          <Col>
+            <b>Add New Product</b>
+          </Col>
+          <Col>
             <Form.Control
               required
               type="text"
               name="name"
               placeholder="Enter Name"
             />
-          </Col><Col>
+          </Col>
+          <Col>
             <Form.Control
               required
               type="number"
@@ -205,7 +237,8 @@ export default function AdminPanel() {
               name="weight"
               placeholder="Enter Weight"
             />
-          </Col><Col>
+          </Col>
+          <Col>
             <Form.Control
               required
               name="unit"
@@ -221,6 +254,7 @@ export default function AdminPanel() {
             >
               Add
             </Button>
+            
           </Col>
         </Form.Row>
       </Form>
