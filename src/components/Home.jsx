@@ -3,11 +3,9 @@ import Navbar from './Navbar';
 import Default from './Default';
 import Footer from './Footer';
 import Myorder from './Myorder';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import {Route, BrowserRouter} from 'react-router-dom';
 import Recommended from './products/Recommended';
 import Popular from './products/Popular';
-import Trending from './products/Trending';
-import Promos from './myaccount/Promos';
 import Myaccount from './myaccount/Myaccount';
 import AdminPanel from './myaccount/AdminPanel';
 

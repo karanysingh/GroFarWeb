@@ -7,9 +7,18 @@ import {
   Button,
   Col,
 } from "react-bootstrap";
+const formSerialize = formElement => {
+  const values = {};
+  const inputs = formElement.elements;
+
+  for (let i = 0; i < inputs.length; i++) {
+    values[inputs[i].name] = inputs[i].value;
+  }
+  return values;
+}
 const axios = require("axios");
 export default function AdminPanel() {
-  const tempData ={
+  var tempData ={
     "id": 5,
     "typeid": 2,
     "unit": "kg",
@@ -23,7 +32,7 @@ export default function AdminPanel() {
   const products = [];
   const [ItemOnDropdown, setItemOnDropdown] = useState("Select Product");
   const [Products, setProducts] = useState(products);
-  const [Temp,setTemp] = useState(tempData);
+  // const [Temp,setTemp] = useState(tempData);
   const [formData,setformData] = useState(tempData);
   useEffect(() => {
     axios
@@ -46,7 +55,7 @@ export default function AdminPanel() {
   const modifyData = () =>{
     var tempIndex;
     for(var i=0;i<Products.length;i++){
-      if(Products[i] == ItemOnDropdown){
+      if(Products[i] === ItemOnDropdown){
         tempIndex = i;
       }
     }
@@ -62,16 +71,34 @@ export default function AdminPanel() {
       "price": 19
     }
   }
-  const createItem =(e)=> {
+  const createItem =(event)=> {
+    
+    event.preventDefault();
+    const form = event.currentTarget;
+    console.log(form)
+    var tmp = {
+      "id": Products.length+1,
+      "typeid": 2,
+      "available": true,
+      "icon": " ",
+      "machine": 1,
+    }
+    var Schema = JSON.stringify(tmp)
+    var newData = JSON.stringify(formSerialize(form))
+    var finalMerged = {...tmp,...formSerialize(form)}
+    console.log(
+      finalMerged
+    )
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
     console.log('called');
-    console.log(e);
-    tempData = ({
-      ...formData,
-  
-      // Trimming any whitespace
-      [e.target.name]: e.target.value.trim()
-    });
-    axios.post('https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/create', tempData)
+    setformData(formSerialize(form));
+
+
+    axios.post('https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/create', finalMerged)
     .then((response) => {
       console.log(response);
     }, (error) => {
@@ -93,7 +120,7 @@ export default function AdminPanel() {
     <div>
       <Table striped bordered hover>
         <thead>
-          <tr>
+          <tr key={-3}>
             <th>Sno.</th>
             <th>Product Name</th>
             <th>Price</th>
@@ -102,7 +129,7 @@ export default function AdminPanel() {
         </thead>
         <tbody>
           {Products.map((product) => (
-            <tr>
+            <tr  key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
@@ -122,6 +149,7 @@ export default function AdminPanel() {
               <Dropdown.ItemText>Select Product</Dropdown.ItemText>
               {Products.map((product) => (
                 <Dropdown.Item
+                key={product.id}
                   onClick={() => {
                     setItemOnDropdown(product.name);
                   }}
@@ -152,20 +180,21 @@ export default function AdminPanel() {
         </Form.Row>
       </Form>
       <br></br>
-      <Form onSubmit={()=>createItem}>
+      <Form 
+              onSubmit={createItem}>
         <Form.Row>
           <Col><b>Add New Product</b></Col><Col>
             <Form.Control
               required
               type="text"
-              id="name"
+              name="name"
               placeholder="Enter Name"
             />
           </Col><Col>
             <Form.Control
               required
               type="number"
-              id="price"
+              name="price"
               placeholder="Enter Price"
             />
           </Col>
@@ -173,13 +202,13 @@ export default function AdminPanel() {
             <Form.Control
               required
               type="number"
-              id="weight"
+              name="weight"
               placeholder="Enter Weight"
             />
           </Col><Col>
             <Form.Control
               required
-              id="unit"
+              name="unit"
               type="text"
               placeholder="Enter Unit"
             />
@@ -187,7 +216,7 @@ export default function AdminPanel() {
           <Col>
             <Button
               variant="primary"
-              disabled={validated}
+              // disabled={validated}
               type="submit"
             >
               Add

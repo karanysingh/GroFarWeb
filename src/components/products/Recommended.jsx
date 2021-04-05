@@ -90,21 +90,21 @@ export default function Recommended() {
                                 <img
                                   src={recommend.images[0]}
                                   class="img-fluid mx-auto rounded shadow-sm"
-                                  alt="Responsive image"
+                                  alt="Responsive"
                                 />
                               </div>
                               <div class="osahan-slider-item m-2 rounded">
                                 <img
                                   src={recommend.images[1]}
                                   class="img-fluid mx-auto rounded shadow-sm"
-                                  alt="Responsive image"
+                                  alt="Responsive"
                                 />
                               </div>
                               <div class="osahan-slider-item m-2 rounded">
                                 <img
                                   src={recommend.images[2]}
                                   class="img-fluid mx-auto rounded shadow-sm"
-                                  alt="Responsive image"
+                                  alt="Responsive"
                                 />
                               </div>
                             </div>
@@ -123,18 +123,21 @@ export default function Recommended() {
                                     action="#"
                                   >
                                     <input
+                                    key={-1}
                                       type="button"
                                       value="-"
                                       class="qtyminus btn btn-success btn-sm"
                                       field="quantity"
                                     />
                                     <input
+                                    key={1}
                                       type="text"
                                       name="quantity"
                                       value="1"
                                       class="qty form-control"
                                     />
                                     <input
+                                    key={2}
                                       type="button"
                                       value="+"
                                       class="qtyplus btn btn-success btn-sm"

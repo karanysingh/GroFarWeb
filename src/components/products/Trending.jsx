@@ -111,6 +111,7 @@ return(
                                   </div>
                                   <div class="p-3">
                                     <img
+                                    alt={pick.title}
                                       src={pick.image}
                                       class="img-fluid item-img w-100 mb-3"
                                     />
