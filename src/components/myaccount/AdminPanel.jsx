@@ -8,6 +8,7 @@ import {
   Col,
 } from "react-bootstrap";
 const formSerialize = (formElement) => {
+  // console.log(formElement);
   const values = {};
   const inputs = formElement.elements;
 
@@ -31,20 +32,17 @@ export default function AdminPanel() {
   };
   const products = [];
   const [ItemOnDropdown, setItemOnDropdown] = useState("Select Product");
-  const [ItemOnDropdownDelete, setItemOnDropdownDelete] = useState(
-    "Select Product"
-  );
   const [Products, setProducts] = useState(products);
   // const [Temp,setTemp] = useState(tempData);
   const [formData, setformData] = useState(tempData);
-  useEffect(() => {
+  const fetchAndUpdate = () =>{
     axios
       .get(
         "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/read"
       )
       .then(function (response) {
         // handle success
-        console.log(response);
+        // console.log(response);
         const data = response.data;
         setProducts(data);
       })
@@ -52,13 +50,25 @@ export default function AdminPanel() {
         // handle error
         console.log(error);
       });
-  }, []);
+      
+  }
+  useEffect(()=>{
+    fetchAndUpdate();
+    const interval=setInterval(()=>{
+      fetchAndUpdate()
+     },2000)
+       
+       
+     return()=>clearInterval(interval)}, []
+     );
+
   const [validated, setValidated] = useState(false);
   //post request to the database
   const createItem = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     var tmp = {
-      id: Products.length + 1,
+      id: Products[Products.length-1].id + 1,
       typeid: 2,
       available: true,
       icon: " ",
@@ -67,13 +77,13 @@ export default function AdminPanel() {
     var Schema = JSON.stringify(tmp);
     var newData = JSON.stringify(formSerialize(form));
     var finalMerged = { ...tmp, ...formSerialize(form) };
-    console.log(finalMerged);
+    // console.log(finalMerged);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
-    console.log("called");
+    // console.log("called");
     setformData(formSerialize(form));
 
     axios
@@ -83,45 +93,90 @@ export default function AdminPanel() {
       )
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
         },
         (error) => {
           console.log(error);
-        }
-      );
+        },
+      )
   };
   
   const handleDelete = (event) => {
+    // console.log('delete')
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    }}
+    }
+    var tempIndex;
+    for (var i = 0; i < Products.length; i++) {
+      if (Products[i].name === ItemOnDropdown) {
+        tempIndex = Products[i].id;
+      } 
+    }
+    axios
+    .delete(
+      "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/delete/"+tempIndex
+    )
+    .then(
+      (response) => {
+        // console.log(response);
+        console.log(
+          "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/delete/"+tempIndex);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
   const handleUpdate = (event) => {
-    const form = event.currentTarget;
+    // console.log('update')
+    event.preventDefault()
+    const form = document.getElementById("item");
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
 
     setValidated(true);
-    var tempIndex;
+    var tempIndex,name;
     for (var i = 0; i < Products.length; i++) {
-      if (Products[i] === ItemOnDropdown) {
-        tempIndex = i;
+      if (Products[i].name === ItemOnDropdown) {
+        tempIndex = Products[i].id;
+        name = Products[i].name;
       }
+      var tmp = {
+        id: Number(tempIndex),
+        typeid: 2,
+        available: true,
+        icon: " ",
+        machine: 1,
+        name:name,
+      };
+      // console.log(formSerialize(form));
+      var Schema = JSON.stringify(tmp);
+      var newData = JSON.stringify(formSerialize(form));
+      var finalMerged = { ...tmp, ...formSerialize(form) };
+      delete finalMerged[""][""];
     }
-    tempData = {
-      id: tempIndex + 1,
-      typeid: 2,
-      unit: "kg",
-      weight: 1,
-      available: true,
-      icon: " ",
-      machine: 1,
-      name: "Ginger",
-      price: 19,
-    };
+    // console.log(finalMerged)
+    axios
+    .put(
+      "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/update/"+tempIndex,finalMerged
+    )
+    .then(
+      (response) => {
+        // console.log(response);
+        console.log(
+          "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/update/"+tempIndex);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+
   };
   return (
     <div>
@@ -135,9 +190,9 @@ export default function AdminPanel() {
           </tr>
         </thead>
         <tbody>
-          {Products.map((product) => (
+          {Products.map((product,index) => (
             <tr key={product.id}>
-              <td>{product.id}</td>
+              <td>{index+1}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
               <td>
@@ -148,7 +203,7 @@ export default function AdminPanel() {
         </tbody>
       </Table>
 
-      <Form>
+      <Form id="item">
         <Form.Row>
           <Col>
             <b>Modify Prices and Quantity</b>
@@ -172,35 +227,37 @@ export default function AdminPanel() {
           </Col>
           <Col>
             <Form.Control
+              name="price"
               type="number"
               placeholder="Enter New Price"
             />
           </Col>
           <Col>
             <Form.Control
+              name="weight"
               type="number"
-              placeholder="Enter New Quantity"
+              placeholder="Enter New Quantity/Weight"
             />
           </Col>
           
           <Col>
             <Form.Control
-              type="number"
+              name="unit"
+              type="text"
               placeholder="Enter New Unit"
             />
           </Col>
           <Col>
             <Button
               variant="primary"
-              disabled={validated}
-              onClick={() => handleUpdate}
+              onClick={handleUpdate}
               type="submit"
             >
               Update
             </Button>
             <Button
               variant="primary"
-              onClick={() => handleDelete}
+              onClick={handleDelete}
               type="submit"
             >
               Delete
@@ -235,7 +292,7 @@ export default function AdminPanel() {
               required
               type="number"
               name="weight"
-              placeholder="Enter Weight"
+              placeholder="Enter Quantity/Weight"
             />
           </Col>
           <Col>
