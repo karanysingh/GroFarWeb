@@ -2,7 +2,6 @@ import './App.css';
 import Home from './components/Home.jsx' ;
 import { connect } from 'react-redux';
 import { addTask,getData } from './actions';
-
 function App({ appState, addNewTask, getNewData}) {
   function handleAddTask(){
     const task =document.querySelector('.task').value;
@@ -10,6 +9,7 @@ function App({ appState, addNewTask, getNewData}) {
     getNewData();
 
   }
+
   return (
     <div className="App">
       <Home></Home>

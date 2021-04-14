@@ -21,7 +21,7 @@ const formSerialize = (formElement) => {
 };
 const axios = require("axios");
 var x = window.matchMedia("(max-width: 576px)")
-export default function AdminPanel() {
+export default function AdminFinal() {
   var tempData = {
     id: 5,
     typeid: 2,
@@ -154,7 +154,7 @@ export default function AdminPanel() {
     );
   }
   
-  var READ = false
+  var READ = true
   const handleUpdate = (id) => {
     // console.log(this);
     console.log('update')
@@ -205,11 +205,14 @@ export default function AdminPanel() {
         <Col md={8} lg={1}>Name</Col>
         <Col md={8} lg={1}>Price</Col>
         <Col md={8} lg={1}>Weight/Quantity</Col>
+        <Col md={8} lg={1}>Purchase Price</Col>
+        <Col md={8} lg={1}>Purchase Quantity</Col>
+        <Col md={8} lg={1}>Net Purchase</Col>
         <Col md={8} lg={1}>Unit</Col>
         <Col md={8} lg={1}>Availablity</Col>
-        <Col md={8} lg={1}>Image Link</Col>
-        <Col md={8} lg={1}>Modify</Col>
-        <Col md={8} lg={1}>Delete</Col>
+        {/* <Col md={8} lg={1}>Image Link</Col> */}
+        {/* <Col md={8} lg={1}>Modify</Col>
+        <Col md={8} lg={1}>Delete</Col> */}
       </Row>
           {Products.map((product,index) => (
           <Form id={product.id}>
@@ -218,13 +221,15 @@ export default function AdminPanel() {
               <Col  lg={1} md={8}><Form.Control className="formfields" name="name" type="text" defaultValue={product.name} readOnly={READ} /></Col>
               <Col  lg={1} md={8}><Form.Control className="formfields" name="price" type="number" defaultValue={product.price} readOnly={READ} /></Col>
               <Col  lg={1} md={8}><Form.Control className="formfields" name="weight"type="number" defaultValue={product.weight} readOnly={READ} /></Col>
-             
+              <Col  lg={1} md={8}><Form.Control type="text" placeholder={product.purchasePrice} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control type="text" placeholder={product.purchaseQuantity} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control type="text" placeholder={product.purchaseQuantity*product.purchasePrice} readOnly={READ} /></Col>
               {/* <Col><Form.Control className="formfields" name="unit" type="text" defaultValue={product.unit} readOnly={true} /></Col> */}
               <Col  lg={1} md={8}><Form.Control className="formfields" name="unit" type="text" defaultValue={product.unit} readOnly={READ} /></Col>
               <Col  lg={1} md={8}><Form.Control className="formfields" name="available" type="text" defaultValue={product.available} readOnly={READ} /></Col>
-              <Col  lg={1} md={8}><Form.Control className="formfields" name="imageLink" type="text" defaultValue={product.imageLink} readOnly={READ} /></Col>
+              {/* <Col  lg={1} md={8}><Form.Control className="formfields" name="imageLink" type="text" defaultValue={product.imageLink} readOnly={READ} /></Col> */}
               
-              <Col lg={1} md={4}>
+              {/* <Col lg={1} md={4}>
               <Button
               variant="primary"
               onClick={(e)=>{e.preventDefault()
@@ -244,77 +249,12 @@ export default function AdminPanel() {
               type="submit" >
                 <i className="fa fa-times"></i>
             </Button>
-              </Col>
+              </Col> */}
             </Form.Row>
               </Form>
           ))}
 <br></br>
      
-      <br></br>
-      <Form onSubmit={createItem}>
-        <Form.Row  className="productsForm">
-          <Col lg={1} md={4}>
-            <b>Add New Product</b>
-          </Col>
-          <Col lg={1} md={4}>
-            <Form.Control
-              required
-              type="text"
-              name="name"
-              placeholder="Enter Name"
-            />
-          </Col>
-          <Col lg={1} md={4}>
-            <Form.Control
-              required
-              type="number"
-              name="price"
-              placeholder="Enter Price"
-            />
-          </Col>
-          <Col lg={1} md={4}>
-            <Form.Control
-              required
-              type="number"
-              name="weight"
-              placeholder="Enter Quantity/Weight"
-            />
-          </Col>
-          <Col lg={1} md={4}>
-            <Form.Control
-              required
-              type="text"
-              name="imageLink"
-              placeholder="Enter Image Link"
-            />
-          </Col>
-          <Col lg={1} md={4}>
-            <Form.Control
-              required
-              name="unit"
-              type="text"
-              placeholder="Enter Unit"
-            />
-          </Col>
-          <Col lg={1} md={4}>
-            <Form.Control
-              required
-              name="available"
-              type="text"
-              placeholder="Enter Availablity"
-            />
-          </Col>
-          <Col lg={1} md={4}>
-            <Button
-              variant="primary"
-              type="submit"
-            >
-              Add
-            </Button>
-            
-          </Col>
-        </Form.Row>
-      </Form>
       <br></br>
     </div>
     </Container>

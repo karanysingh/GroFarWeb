@@ -9,6 +9,7 @@ import Popular from './products/Popular';
 import Myaccount from './myaccount/Myaccount';
 import AdminPanel from './myaccount/AdminPanel';
 import AdminNew from './myaccount/Admin';
+import AdminFinal from './myaccount/AdminFinal';
 
 
 export default class Home extends React.Component {
@@ -21,8 +22,9 @@ export default class Home extends React.Component {
             <Navbar></Navbar>
                 {/* <Switch> */}
                     <Route exact path="/myorder" component={Myorder}></Route>
-                    <Route exact path="/admin" component={AdminPanel}></Route>
-                    <Route exact path="/adminnew" component={AdminNew}></Route>
+                    <Route exact path="/admin1" component={AdminPanel}></Route>
+                    <Route exact path="/admin2" component={AdminNew}></Route>
+                    <Route exact path="/admin3" component={AdminFinal}></Route>
                     <Route exact path="/myorder/:type" component={Myorder}></Route>
                     <Route exact path="/myaccount" component={Myaccount}></Route>
                     <Route exact path="/myaccount/:type" component={Myaccount}></Route>

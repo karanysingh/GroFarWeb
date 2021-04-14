@@ -1,0 +1,38 @@
+@media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+}
+@media only screen and (max-width: 720px){
+    
+.productsForm.form-row {
+    background-color: #13ba1391;
+    padding: 2%;
+    margin-block-end: 30px;
+    border-radius: 10px;
+    margin-left: 21vh;
+    margin-right: 1vh;
+}
+
+.adminHeadings.row {
+    z-index: -1;
+    position: fixed;
+    border-radius: 10px;
+    margin-left: -1vh;
+    margin-right: 1vh;
+    width: 21vh;
+    background-color: rgba(255, 0, 0, 0.336);
+
+}
+.adminHeadings.row > div {
+    /* left: 1; */
+    /* width: 20%; */
+    padding: 8px;
+    /* background-color: white; */
+    text-align: left;
+    margin-left: 0px;
+}
+.adminHeadings.row > div >div {
+    background-color: white;
+}
+
+}
+ 

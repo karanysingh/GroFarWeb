@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
+import './admin.css';
 import {
-  Table,
-  DropdownButton,
-  Dropdown,
   Form,
   Button,
-  Col,Row
+  Col,Row, Container
 } from "react-bootstrap";
 const formSerialize = (formElement) => {
   // console.log(formElement);
@@ -22,6 +20,7 @@ const formSerialize = (formElement) => {
   return values;
 };
 const axios = require("axios");
+var x = window.matchMedia("(max-width: 576px)")
 export default function AdminPanel() {
   var tempData = {
     id: 5,
@@ -84,12 +83,17 @@ export default function AdminPanel() {
   const createItem = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    console.log(Products.length!=0 ? (Products[Products.length-1].id + 1):1);
     var tmp = {
-      id: Products[Products.length-1].id + 1,
+      id: (Products.length!=0 ? ( parseInt(Products[Products.length-1].id) +  parseInt(1)):1),
       typeid: 2,
       available: true,
-      icon: " ",
+      icon: "https://cdn.onlinewebfonts.com/svg/img_231353.png",
       machine: 1,
+      purchasePrice: 20,
+      purchaseQuantity:6,
+      imageLink:'https://i.cbc.ca/1.3328214.1497027575!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/potatoes.jpg',
+
     };
     var Schema = JSON.stringify(tmp);
     var newData = JSON.stringify(formSerialize(form));
@@ -102,7 +106,9 @@ export default function AdminPanel() {
     setValidated(true);
     // console.log("called");
     setformData(formSerialize(form));
-
+    
+    delete finalMerged[""][""];
+    console.log(finalMerged);
     axios
       .post(
         "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/create",
@@ -156,19 +162,16 @@ export default function AdminPanel() {
     console.log(form,id);
     
     var tempIndex;
-    // for (var i = 0; i < Products.length; i++) {
-    //   if (Products[i].name === ItemOnDropdown) {
-    //     tempIndex = Products[i].id;
-    //     name = Products[i].name;
-    //   }
-    // name = Products[id === id].name;
     tempIndex = id;
       var tmp = {
         id: Number(tempIndex),
         typeid: 2,
         available: true,
-        icon: " ",
+        ico: "https://i.cbc.ca/1.3328214.1497027575!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/potatoes.jpg",
         machine: 1,
+      purchasePrice: 20,
+      purchaseQuantity:6,
+      imageLink:'https://i.cbc.ca/1.3328214.1497027575!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/potatoes.jpg',
       };
       console.log(formSerialize(form));
       var Schema = JSON.stringify(tmp);
@@ -195,31 +198,38 @@ export default function AdminPanel() {
 
   };
   return (
+    <Container>
     <div>
-      <Row>
-        <Col>Sno.</Col>
-        <Col>Name</Col>
-        <Col>Price</Col>
-        <Col>Weight/Quantity</Col>
-        <Col>Unit</Col>
-        <Col>Availablity</Col>
-        <Col>Modify</Col>
-        <Col>Delete</Col>
+      <Row className="adminHeadings">
+        <Col md={8} lg={1}>Sno.</Col>
+        <Col md={8} lg={1}>Name</Col>
+        <Col md={8} lg={1}>Price</Col>
+        <Col md={8} lg={1}>Weight/Quantity</Col>
+        <Col md={8} lg={1}>Purchase Price</Col>
+        <Col md={8} lg={1}>Purchase Quantity</Col>
+        <Col md={8} lg={1}>Net Purchase</Col>
+        <Col md={8} lg={1}>Unit</Col>
+        <Col md={8} lg={1}>Availablity</Col>
+        <Col md={8} lg={1}>Image Link</Col>
+        <Col md={8} lg={1}>Modify</Col>
+        <Col md={8} lg={1}>Delete</Col>
       </Row>
           {Products.map((product,index) => (
           <Form id={product.id}>
-              <Form.Row key={product.id}>
-              <Col><Form.Control type="number" placeholder={index+1} readOnly /></Col>
-              <Col><Form.Control className="formfields" name="name" type="text" defaultValue={product.name} readOnly={READ} /></Col>
-              <Col><Form.Control className="formfields" name="price" type="number" defaultValue={product.price} readOnly={READ} /></Col>
-              <Col><Form.Control className="formfields" name="weight"type="number" defaultValue={product.weight} readOnly={READ} /></Col>
-              {/* <Col><Form.Control type="text" placeholder={product.purchaseprice} readOnly /></Col> */}
-              {/* <Col><Form.Control type="text" placeholder={product.sellprice} readOnly /></Col> */}
+              <Form.Row className="productsForm" key={product.id}>
+              <Col md={8} lg={1}><Form.Control type="number" placeholder={index+1} readOnly /></Col>
+              <Col  lg={1} md={8}><Form.Control className="formfields" name="name" type="text" defaultValue={product.name} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control className="formfields" name="price" type="number" defaultValue={product.price} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control className="formfields" name="weight"type="number" defaultValue={product.weight} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control type="text" placeholder={product.purchasePrice} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control type="text" placeholder={product.purchaseQuantity} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control type="text" placeholder={product.purchaseQuantity*product.purchasePrice} readOnly={READ} /></Col>
               {/* <Col><Form.Control className="formfields" name="unit" type="text" defaultValue={product.unit} readOnly={true} /></Col> */}
-              <Col><Form.Control className="formfields" name="unit" type="text" defaultValue={product.unit} readOnly={READ} /></Col>
-              <Col><Form.Control className="formfields" name="available" type="text" defaultValue={product.available} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control className="formfields" name="unit" type="text" defaultValue={product.unit} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control className="formfields" name="available" type="text" defaultValue={product.available} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control className="formfields" name="imageLink" type="text" defaultValue={product.imageLink} readOnly={READ} /></Col>
               
-              <Col>
+              <Col lg={1} md={4}>
               <Button
               variant="primary"
               onClick={(e)=>{e.preventDefault()
@@ -229,7 +239,7 @@ export default function AdminPanel() {
               Update
             </Button>
                 </Col>
-              <Col>
+              <Col lg={1} md={4}>
               
             <Button
               variant="danger"
@@ -243,77 +253,15 @@ export default function AdminPanel() {
             </Form.Row>
               </Form>
           ))}
-        {/* </tbody> */}
 <br></br>
-      {/* <Form id="item"> */}
-        {/* <Form.Row>
-          <Col>
-            <b>Modify Prices and Quantity</b>
-          </Col>
-          <Col>
-            <DropdownButton id="dropdown-item-button" title={ItemOnDropdown}>
-              <Dropdown.ItemText>Select Product</Dropdown.ItemText>
-              {Products.map((product) => (
-                <Dropdown.Item
-                  key={product.id}
-                  onClick={(e)=>{
-                    setItemOnDropdown(product.name)
-                    e.preventDefault()
-                  }}
-                  as="button"
-                >
-                  {product.name}
-                </Dropdown.Item>
-              ))}
-            </DropdownButton>
-          </Col>
-          <Col>
-            <Form.Control
-              name="price"
-              type="number"
-              placeholder="Enter New Price"
-            />
-          </Col>
-          <Col>
-            <Form.Control
-              name="weight"
-              type="number"
-              placeholder="Enter New Quantity/Weight"
-            />
-          </Col>
-          
-          <Col>
-            <Form.Control
-              name="unit"
-              type="text"
-              placeholder="Enter New Unit"
-            />
-          </Col>
-          <Col>
-            <Button
-              variant="primary"
-              onClick={handleUpdate}
-              type="submit"
-            >
-              Update
-            </Button>
-            <Button
-              variant="primary"
-              onClick={handleDelete}
-              type="submit"
-            >
-              Delete
-            </Button>
-          </Col>
-        </Form.Row>
-      </Form> */}
+     
       <br></br>
       <Form onSubmit={createItem}>
-        <Form.Row>
-          <Col>
+        <Form.Row  className="productsForm">
+          <Col lg={1} md={4}>
             <b>Add New Product</b>
           </Col>
-          <Col>
+          <Col lg={1} md={4}>
             <Form.Control
               required
               type="text"
@@ -321,7 +269,7 @@ export default function AdminPanel() {
               placeholder="Enter Name"
             />
           </Col>
-          <Col>
+          <Col lg={1} md={4}>
             <Form.Control
               required
               type="number"
@@ -329,7 +277,7 @@ export default function AdminPanel() {
               placeholder="Enter Price"
             />
           </Col>
-          <Col>
+          <Col lg={1} md={4}>
             <Form.Control
               required
               type="number"
@@ -337,7 +285,31 @@ export default function AdminPanel() {
               placeholder="Enter Quantity/Weight"
             />
           </Col>
-          <Col>
+          <Col lg={1} md={4}>
+            <Form.Control
+              required
+              type="number"
+              name="purchasePrice"
+              placeholder="Enter Purchase Price"
+            />
+          </Col>
+          <Col lg={1} md={4}>
+            <Form.Control
+              required
+              type="number"
+              name="purchaseQuantity"
+              placeholder="Enter Purchase Quantity"
+            />
+          </Col>
+          <Col lg={1} md={4}>
+            <Form.Control
+              required
+              type="text"
+              name="imageLink"
+              placeholder="Enter Image Link"
+            />
+          </Col>
+          <Col lg={1} md={4}>
             <Form.Control
               required
               name="unit"
@@ -345,7 +317,7 @@ export default function AdminPanel() {
               placeholder="Enter Unit"
             />
           </Col>
-          <Col>
+          <Col lg={1} md={4}>
             <Form.Control
               required
               name="available"
@@ -353,7 +325,7 @@ export default function AdminPanel() {
               placeholder="Enter Availablity"
             />
           </Col>
-          <Col>
+          <Col lg={1} md={4}>
             <Button
               variant="primary"
               type="submit"
@@ -366,5 +338,6 @@ export default function AdminPanel() {
       </Form>
       <br></br>
     </div>
+    </Container>
   );
 }

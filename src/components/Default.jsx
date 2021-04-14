@@ -1,4 +1,10 @@
+import { queryByDisplayValue } from "@testing-library/dom";
 import React, { useEffect, useState } from "react";
+import {
+  Form,
+  Button,
+  Col,Row, Container
+} from "react-bootstrap";
 const axios = require("axios");
 
 
@@ -6,13 +12,11 @@ const axios = require("axios");
 
 export default function Default() {
   let categories = [
-    { listing: "/listing.html", image: "img/categorie/1.svg", title: "Frozen" },
-    { listing: "/listing.html", image: "img/categorie/2.svg", title: "Frozen" },
-    { listing: "/listing.html", image: "img/categorie/3.svg", title: "Frozen" },
-    { listing: "/listing.html", image: "img/categorie/4.svg", title: "Frozen" },
-    { listing: "/listing.html", image: "img/categorie/5.svg", title: "Frozen" },
-    { listing: "/listing.html", image: "img/categorie/6.svg", title: "Frozen" },
-    { listing: "/listing.html", image: "img/categorie/7.svg", title: "Frozen" },
+    { listing: "/listing.html", ico: "img/categorie/1.svg", name: "Frozen" },
+    { listing: "/listing.html", ico: "img/categorie/2.svg", name: "Frozen" },
+    { listing: "/listing.html", ico: "img/categorie/3.svg", name: "Frozen" },
+    { listing: "/listing.html", ico: "img/categorie/4.svg", name: "Frozen" },
+    { listing: "/listing.html", ico: "img/categorie/5.svg", name: "Frozen" },
   ];
   let promos = [
     { image: "img/promo1.jpg", link: "/promo_details.html" },
@@ -141,7 +145,7 @@ export default function Default() {
               <div className="osahan-body">
                 <div className="pt-3 pb-2 osahan-categories">
                   <div className="d-flex align-items-center mb-2">
-                    <h5 clasName="m-0">What do you looking for?</h5>
+                    <h5 className="m-0">What do you looking for?</h5>
                     <a
                       href="listing.html"
                       className="ml-auto btn btn-outline-success btn-sm"
@@ -150,11 +154,11 @@ export default function Default() {
                     </a>
                   </div>
                   <div className="categories-slider">
-                   {Products.map((product) => {
+                    <Row>
+                   {categories.map((product) => {
                       return (
-                        <div className="col-c">
-                          <div className="bg-white shadow-sm rounded text-center my-2 px-2 py-3 c-it">
-                            <a href={product.ico}>
+                        <Col md={2} className="cardCategories my-2 px-2 py-3 bg-white rounded">
+                        <a href={product.ico}>
                               <img
                                 src={product.ico}
                                 className="img-fluid px-2 mx-auto"
@@ -163,13 +167,13 @@ export default function Default() {
                                 {product.name}
                               </p>
                             </a>
-                          </div>
-                        </div>
+                            </Col>
                       );
                     })}
+                    </Row>
                   </div>
                   <div className="py-3 osahan-promos">
-                    <div className="d-flex align-items-center mb-3">
+                    {/* <div className="d-flex align-items-center mb-3">
                       <h5 className="m-0">Promos for you</h5>
                       <a
                         href="promos.html"
@@ -177,8 +181,8 @@ export default function Default() {
                       >
                         See more
                       </a>
-                    </div>
-                    <div className="promo-slider pb-0 mb-0">
+                    </div> */}
+                    {/* <div className="promo-slider pb-0 mb-0">
                       {promos.map((promo) => {
                         return (
                           <div className="osahan-slider-item mx-2">
@@ -192,7 +196,7 @@ export default function Default() {
                           </div>
                         );
                       })}
-                    </div>
+                    </div> */}
                     <div className="title d-flex align-items-center py-3">
                       <h5 className="m-0">Pick's Today</h5>
                       <a
@@ -208,10 +212,10 @@ export default function Default() {
                           <div className="col-6 col-md-3 mb-3">
                             <div className="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                               <div className="list-card-image">
-                                <a
+                                {/* <a
                                   href="product_details.html"
                                   className="text-dark"
-                                >
+                                > */}
                                   <div className="member-plan position-absolute">
                                     <span className="badge m-3 badge-danger">
                                       {/* {pick.discount} */}10%
@@ -219,7 +223,7 @@ export default function Default() {
                                   </div>
                                   <div className="p-3">
                                     <img
-                                      src={pick.ico}
+                                      src={pick.icon}
                                       className="img-fluid item-img w-100 mb-3"
                                     />
                                     <h6>{pick.name}</h6>
@@ -251,19 +255,19 @@ export default function Default() {
                                             >
                                               <input
                                                 type="button"
-                                                value="-"
+                                                // // value="-1"
                                                 className="qtyminus btn btn-success btn-sm"
                                                 field="quantity"
                                               />
                                               <input
                                                 type="text"
                                                 name="quantity"
-                                                value="1"
+                                                // // value="1"
                                                 className="qty form-control"
                                               />
                                               <input
                                                 type="button"
-                                                value="+"
+                                                // // value="+"
                                                 className="qtyplus btn btn-success btn-sm"
                                                 field="quantity"
                                               />
@@ -273,7 +277,7 @@ export default function Default() {
                                       </div>
                                     </div>
                                   </div>
-                                </a>
+                                {/* </a> */}
                               </div>
                             </div>
                           </div>
@@ -282,10 +286,10 @@ export default function Default() {
                           <div className="row">
                               {recommended.map((recommend)=>(
                             <div className="col-12 col-md-4 mb-3">
-                              <a
+                              {/* <a
                                 href={recommend.link}
                                 className="text-dark text-decoration-none"
-                              >
+                              > */}
                                 <div className="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                                   <div className="recommend-slider2 rounded mb-0">
                                     <div className="osahan-slider-item m-2 rounded">
@@ -328,19 +332,19 @@ export default function Default() {
                                         >
                                           <input
                                             type="button"
-                                            value="-"
+                                            // // value="-"
                                             className="qtyminus btn btn-success btn-sm"
                                             field="quantity"
                                           />
                                           <input
                                             type="text"
                                             name="quantity"
-                                            value="1"
+                                            // // value="1"
                                             className="qty form-control"
                                           />
                                           <input
                                             type="button"
-                                            value="+"
+                                            // // value="+"
                                             className="qtyplus btn btn-success btn-sm"
                                             field="quantity"
                                           />
@@ -349,7 +353,7 @@ export default function Default() {
                                     </div>
                                   </div>
                                 </div>
-                              </a>
+                              {/* </a> */}
                             </div>))}
                           </div>
                         </div>
