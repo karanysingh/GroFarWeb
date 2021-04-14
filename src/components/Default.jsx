@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+const axios = require("axios");
+
+
+
 
 export default function Default() {
   let categories = [
@@ -98,35 +102,65 @@ export default function Default() {
         ],
       },
   ];
+  
+  const products = [];
+  const [Products, setProducts] = useState(products);
+  const fetchAndUpdate = () =>{
+    axios
+      .get(
+        "https://us-central1-elite-conquest-228205.cloudfunctions.net/app/api/read"
+      )
+      .then(function (response) {
+        // handle success
+        // console.log(response);
+        const data = response.data;
+        setProducts(data);
+        // console.log(data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+      
+  }
+  useEffect(()=>{
+    fetchAndUpdate();
+    const interval=setInterval(()=>{
+      fetchAndUpdate()
+     },2000)
+       
+       
+     return()=>clearInterval(interval)}, []
+     );
   return (
-    <section class="py-4 osahan-main-body">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="osahan-home-page">
-              <div class="osahan-body">
-                <div class="pt-3 pb-2 osahan-categories">
-                  <div class="d-flex align-items-center mb-2">
-                    <h5 class="m-0">What do you looking for?</h5>
+    <section className="py-4 osahan-main-body">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="osahan-home-page">
+              <div className="osahan-body">
+                <div className="pt-3 pb-2 osahan-categories">
+                  <div className="d-flex align-items-center mb-2">
+                    <h5 clasName="m-0">What do you looking for?</h5>
                     <a
                       href="listing.html"
-                      class="ml-auto btn btn-outline-success btn-sm"
+                      className="ml-auto btn btn-outline-success btn-sm"
                     >
                       See more
                     </a>
                   </div>
-                  <div class="categories-slider">
-                    {categories.map((product) => {
+                  <div className="categories-slider">
+                   {Products.map((product) => {
                       return (
-                        <div class="col-c">
-                          <div class="bg-white shadow-sm rounded text-center my-2 px-2 py-3 c-it">
-                            <a href={product.link}>
+                        <div className="col-c">
+                          <div className="bg-white shadow-sm rounded text-center my-2 px-2 py-3 c-it">
+                            <a href={product.ico}>
                               <img
-                                src={product.image}
-                                class="img-fluid px-2 mx-auto"
+                                src={product.ico}
+                                className="img-fluid px-2 mx-auto"
                               ></img>
-                              <p class="m-0 pt-2 text-muted text-center">
-                                {product.title}
+                              <p className="m-0 pt-2 text-muted text-center">
+                                {product.name}
                               </p>
                             </a>
                           </div>
@@ -134,24 +168,24 @@ export default function Default() {
                       );
                     })}
                   </div>
-                  <div class="py-3 osahan-promos">
-                    <div class="d-flex align-items-center mb-3">
-                      <h5 class="m-0">Promos for you</h5>
+                  <div className="py-3 osahan-promos">
+                    <div className="d-flex align-items-center mb-3">
+                      <h5 className="m-0">Promos for you</h5>
                       <a
                         href="promos.html"
-                        class="ml-auto btn btn-outline-success btn-sm"
+                        className="ml-auto btn btn-outline-success btn-sm"
                       >
                         See more
                       </a>
                     </div>
-                    <div class="promo-slider pb-0 mb-0">
+                    <div className="promo-slider pb-0 mb-0">
                       {promos.map((promo) => {
                         return (
-                          <div class="osahan-slider-item mx-2">
+                          <div className="osahan-slider-item mx-2">
                             <a href={promo.link}>
                               <img
                                 src={promo.image}
-                                class="img-fluid mx-auto rounded"
+                                className="img-fluid mx-auto rounded"
                                 alt="Responsive image"
                               />
                             </a>
@@ -159,39 +193,39 @@ export default function Default() {
                         );
                       })}
                     </div>
-                    <div class="title d-flex align-items-center py-3">
-                      <h5 class="m-0">Pick's Today</h5>
+                    <div className="title d-flex align-items-center py-3">
+                      <h5 className="m-0">Pick's Today</h5>
                       <a
-                        class="ml-auto btn btn-outline-success btn-sm"
+                        className="ml-auto btn btn-outline-success btn-sm"
                         href="picks_today.html"
                       >
                         See more
                       </a>
                     </div>
-                    <div class="pick_today">
-                      <div class="row">
-                        {picks.map((pick) => (
-                          <div class="col-6 col-md-3 mb-3">
-                            <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                              <div class="list-card-image">
+                    <div className="pick_today">
+                      <div className="row">
+                        {Products.map((pick) => (
+                          <div className="col-6 col-md-3 mb-3">
+                            <div className="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                              <div className="list-card-image">
                                 <a
                                   href="product_details.html"
-                                  class="text-dark"
+                                  className="text-dark"
                                 >
-                                  <div class="member-plan position-absolute">
-                                    <span class="badge m-3 badge-danger">
-                                      {pick.discount}
+                                  <div className="member-plan position-absolute">
+                                    <span className="badge m-3 badge-danger">
+                                      {/* {pick.discount} */}10%
                                     </span>
                                   </div>
-                                  <div class="p-3">
+                                  <div className="p-3">
                                     <img
-                                      src={pick.image}
-                                      class="img-fluid item-img w-100 mb-3"
+                                      src={pick.ico}
+                                      className="img-fluid item-img w-100 mb-3"
                                     />
-                                    <h6>{pick.title}</h6>
-                                    <div class="d-flex align-items-center">
-                                      <h6 class="price m-0 text-success">
-                                        ${pick.price}
+                                    <h6>{pick.name}</h6>
+                                    <div className="d-flex align-items-center">
+                                      <h6 className="price m-0 text-success">
+                                        ${pick.price}/{pick.weight}{pick.unit}
                                       </h6>
                                       <a
                                         data-toggle="collapse"
@@ -199,38 +233,38 @@ export default function Default() {
                                         role="button"
                                         aria-expanded="false"
                                         aria-controls="collapseExample1"
-                                        class="btn btn-success btn-sm ml-auto"
+                                        className="btn btn-success btn-sm ml-auto"
                                       >
                                         +
                                       </a>
                                       <div
-                                        class="collapse qty_show"
+                                        className="collapse qty_show"
                                         id="collapseExample1"
                                       >
                                         <div>
-                                          <span class="ml-auto" href="#">
+                                          <span className="ml-auto" href="#">
                                             <form
                                               id="myform"
-                                              class="cart-items-number d-flex"
+                                              className="cart-items-number d-flex"
                                               method="POST"
                                               action="#"
                                             >
                                               <input
                                                 type="button"
                                                 value="-"
-                                                class="qtyminus btn btn-success btn-sm"
+                                                className="qtyminus btn btn-success btn-sm"
                                                 field="quantity"
                                               />
                                               <input
                                                 type="text"
                                                 name="quantity"
                                                 value="1"
-                                                class="qty form-control"
+                                                className="qty form-control"
                                               />
                                               <input
                                                 type="button"
                                                 value="+"
-                                                class="qtyplus btn btn-success btn-sm"
+                                                className="qtyplus btn btn-success btn-sm"
                                                 field="quantity"
                                               />
                                             </form>
@@ -244,70 +278,70 @@ export default function Default() {
                             </div>
                           </div>
                         ))}
-                        <div class="osahan-recommend">
-                          <div class="row">
+                        <div className="osahan-recommend">
+                          <div className="row">
                               {recommended.map((recommend)=>(
-                            <div class="col-12 col-md-4 mb-3">
+                            <div className="col-12 col-md-4 mb-3">
                               <a
                                 href={recommend.link}
-                                class="text-dark text-decoration-none"
+                                className="text-dark text-decoration-none"
                               >
-                                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                                  <div class="recommend-slider2 rounded mb-0">
-                                    <div class="osahan-slider-item m-2 rounded">
+                                <div className="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                                  <div className="recommend-slider2 rounded mb-0">
+                                    <div className="osahan-slider-item m-2 rounded">
                                       <img
                                         src={recommend.images[0]}
-                                        class="img-fluid mx-auto rounded shadow-sm"
+                                        className="img-fluid mx-auto rounded shadow-sm"
                                         alt="Responsive image"
                                       />
                                     </div>
-                                    <div class="osahan-slider-item m-2 rounded">
+                                    <div className="osahan-slider-item m-2 rounded">
                                       <img
                                         src={recommend.images[1]}
-                                        class="img-fluid mx-auto rounded shadow-sm"
+                                        className="img-fluid mx-auto rounded shadow-sm"
                                         alt="Responsive image"
                                       />
                                     </div>
-                                    <div class="osahan-slider-item m-2 rounded">
+                                    <div className="osahan-slider-item m-2 rounded">
                                       <img
                                         src={recommend.images[2]}
-                                        class="img-fluid mx-auto rounded shadow-sm"
+                                        className="img-fluid mx-auto rounded shadow-sm"
                                         alt="Responsive image"
                                       />
                                     </div>
                                   </div>
-                                  <div class="p-3 position-relative">
-                                    <h6 class="mb-1 font-weight-bold text-success">
+                                  <div className="p-3 position-relative">
+                                    <h6 className="mb-1 font-weight-bold text-success">
                                       {recommend.title}
                                     </h6>
-                                    <p class="text-muted">
+                                    <p className="text-muted">
                                       {recommend.desc}
                                     </p>
-                                    <div class="d-flex align-items-center">
-                                      <h6 class="m-0">$8.8/kg</h6>
-                                      <a class="ml-auto" href="#">
+                                    <div className="d-flex align-items-center">
+                                      <h6 className="m-0">$8.8/kg</h6>
+                                      <a className="ml-auto" href="#">
                                         <form
                                           id="myform"
-                                          class="cart-items-number d-flex"
+                                          className="cart-items-number d-flex"
                                           method="POST"
                                           action="#"
                                         >
                                           <input
                                             type="button"
                                             value="-"
-                                            class="qtyminus btn btn-success btn-sm"
+                                            className="qtyminus btn btn-success btn-sm"
                                             field="quantity"
                                           />
                                           <input
                                             type="text"
                                             name="quantity"
                                             value="1"
-                                            class="qty form-control"
+                                            className="qty form-control"
                                           />
                                           <input
                                             type="button"
                                             value="+"
-                                            class="qtyplus btn btn-success btn-sm"
+                                            className="qtyplus btn btn-success btn-sm"
                                             field="quantity"
                                           />
                                         </form>
