@@ -222,7 +222,7 @@ export default function AdminPanel() {
               {/* <Col><Form.Control className="formfields" name="unit" type="text" defaultValue={product.unit} readOnly={true} /></Col> */}
               <Col  lg={1} md={8}><Form.Control className="formfields" name="unit" type="text" defaultValue={product.unit} readOnly={READ} /></Col>
               <Col  lg={1} md={8}><Form.Control className="formfields" name="available" type="text" defaultValue={product.available} readOnly={READ} /></Col>
-              <Col  lg={1} md={8}><Form.Control className="formfields" name="imageLink" type="text" defaultValue={product.imageLink} readOnly={READ} /></Col>
+              <Col  lg={1} md={8}><Form.Control className="formfields" name="icon" type="text" defaultValue={product.imageLink} readOnly={READ} /></Col>
               
               <Col lg={1} md={4}>
               <Button
